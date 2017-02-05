@@ -1,0 +1,21 @@
+name: proxy-config
+version: '0.1'
+summary: An easy tool to setup https and http proxy for snapd.
+description: |
+  An easy tool to setup https and http proxy for snapd.
+  User failed to install snap on the devices under the restricted network, this snap helps user easy to setup proxy for snapd so that "snap install" works in such situation.
+  usage: $ sudo proxy-config -s <https_proxy> -h <http_proxy>
+  Note: It's just a workaround for the time being. There might be available environment variable STORE_PROXY for snapd in the future.
+
+grade: stable
+confinement: devmode
+
+apps:
+  proxy-config:
+    command: proxy-config.sh
+
+parts:
+  proxy-conf:
+    plugin: dump
+    organize:
+      script/*: bin/
